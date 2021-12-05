@@ -22,11 +22,11 @@ struct MoviesResponce: Codable {
 }
 
 // MARK: - Result
-struct Movie: Codable {
+struct Movie: Codable, Identifiable, Hashable {
+    let id: Int
     let adult: Bool
     let backdropPath: String
     let genreIDS: [Int]
-    let id: Int
     let originalLanguage: String
     let originalTitle, overview: String
     let popularity: Double
