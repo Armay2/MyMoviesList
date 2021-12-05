@@ -19,7 +19,7 @@ struct MovieRow: View {
             }
             .frame(width: 164, height: 250)
             Text(movie.title).font(.headline)
-        }
+        }.frame(width: 172, height: 322, alignment: .center)
         
     }
 }

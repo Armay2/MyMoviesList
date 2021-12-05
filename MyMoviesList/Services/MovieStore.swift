@@ -11,7 +11,6 @@ import AlamofireImage
 
 protocol MovieService {
     func fetchMovies(page: Int, completion: @escaping (Result<MoviesResponce, Error>) -> ())
-    func fetchImage(path: String, completion: @escaping (Result<UIImage, Error>) -> ())
 }
 
 class MovieStore: MovieService {
@@ -19,7 +18,7 @@ class MovieStore: MovieService {
     // MARK: - Singleton
     static let shared = MovieStore()
     
-    private let APIKEY = "f13e45c35e36cea8df901823086e713d"
+    private let APIKEY = "APIKEY"
     private let baseAPIURL = "https://api.themoviedb.org/3"
     private let imageAPIURL = "https://image.tmdb.org/t/p/w500"
     
@@ -41,21 +40,6 @@ class MovieStore: MovieService {
             completion(.success(movies))
         }
         
-    }
-    
-    /// Get image from the Movie API
-    /// - Parameters:
-    ///   - path: path to the image asked
-    ///   - completion: `Result` of request returning `UIImage` corresponding on success or `Error` on failure
-    func fetchImage(path: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
-        print(imageAPIURL + path)
-        AF.request(imageAPIURL + path).responseImage { response in
-            if case .success(let image) = response.result {
-                completion(.success(image))
-            } else if let error = response.error {
-                completion(.failure(error))
-            }
-        }
     }
 
 }

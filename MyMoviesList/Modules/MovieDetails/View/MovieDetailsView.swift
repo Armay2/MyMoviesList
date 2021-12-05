@@ -12,15 +12,11 @@ struct MovieDetailsView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                Rectangle().fill(Color.gray.opacity(0.3))
-                AsyncImage(url: movie.backgroudURL) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
-                }
+            AsyncImage(url: movie.backgroudURL) { image in
+                image.resizable().blur(radius: 2)
+            } placeholder: {
+                ProgressView()
             }.aspectRatio(16/9, contentMode: .fit)
-            
             
             AsyncImage(url: movie.posterURL) { image in
                 image.resizable()
@@ -30,9 +26,10 @@ struct MovieDetailsView: View {
             .frame(width: 167, height: 250)
             .offset(y: -130)
             .padding(.bottom, -130)
-            Text(movie.title).font(.title)
+            Text(movie.title).font(.title).padding()
+            Text(movie.releaseDate)
             Divider()
-            Text(movie.overview)
+            Text(movie.overview).padding()
             Spacer()
         }
     }

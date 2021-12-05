@@ -11,15 +11,19 @@ struct MoviesListView: View {
     @StateObject var moviesListVM = MoviesListVM()
     
     var body: some View {
-        
         NavigationView{
             List(moviesListVM.movies) { movie in
                 NavigationLink {
                     MovieDetailsView(movie: movie)
                 } label: {
-                    MovieRow(movie: movie).onAppear {
+                    HStack {
+                        Spacer()
+                        MovieRow(movie: movie)
+                        Spacer()
+                    }
+                    .onAppear {
                         moviesListVM.loadMoviesIfNeeded(currentItem: movie)
-                      }
+                    }
                 }
             }.navigationBarTitle("Movies")
             if moviesListVM.isLoadingPage {

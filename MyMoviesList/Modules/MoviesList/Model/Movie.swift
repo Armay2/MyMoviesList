@@ -57,7 +57,3 @@ struct Movie: Codable, Identifiable, Hashable {
         return URL(string: "https://image.tmdb.org/t/p/w500" + posterPath)!
     }
 }
-
-
-/* https://api.themoviedb.org/3/discover/movie?api_key=f13e45c35e36cea8df901823086e713d&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate
- */

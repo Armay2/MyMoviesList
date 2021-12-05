@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Movies List View Model is managing Movies list view datas
 class MoviesListVM: ObservableObject {
     
     // MARK: - Properties
@@ -22,6 +23,8 @@ class MoviesListVM: ObservableObject {
     
     // MARK: - Methodes
     
+    /// Check if it's needed to add more movies to the list
+    /// - Parameter movie: last movie displayed
     func loadMoviesIfNeeded(currentItem movie: Movie?) {
       guard let movie = movie else {
           getMovies()
@@ -33,6 +36,8 @@ class MoviesListVM: ObservableObject {
       }
     }
     
+    
+    /// Add movies to list using pages
     func getMovies() {
         guard !isLoadingPage && canLoadMorePages else {
             return
