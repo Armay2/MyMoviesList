@@ -15,9 +15,12 @@ class MoviesListVM: ObservableObject {
     private var currentPage = 1
     private var canLoadMorePages = true
     
+    // MARK: - Init & Deinit
     init() {
         getMovies()
     }
+    
+    // MARK: - Methodes
     
     func loadMoviesIfNeeded(currentItem movie: Movie?) {
       guard let movie = movie else {
@@ -35,7 +38,6 @@ class MoviesListVM: ObservableObject {
             return
         }
         isLoadingPage = true
-
         MovieStore.shared.fetchMovies(page: currentPage) { result in
             switch result {
             case .success(let moviesResponce):

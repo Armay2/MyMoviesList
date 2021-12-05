@@ -11,12 +11,20 @@ struct MoviesListView: View {
     @StateObject var moviesListVM = MoviesListVM()
     
     var body: some View {
+        
         NavigationView{
             List(moviesListVM.movies) { movie in
-                Text(movie.title).onAppear {
-                    moviesListVM.loadMoviesIfNeeded(currentItem: movie)
-                  }
-            }.navigationBarTitle("SwiftUI Alamofire")
+                NavigationLink {
+                    MovieDetailsView(movie: movie)
+                } label: {
+                    MovieRow(movie: movie).onAppear {
+                        moviesListVM.loadMoviesIfNeeded(currentItem: movie)
+                      }
+                }
+            }.navigationBarTitle("Movies")
+            if moviesListVM.isLoadingPage {
+                ProgressView()
+            }
         }
     }
     
