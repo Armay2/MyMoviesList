@@ -1,0 +1,6 @@
+framework module Pods_MyMoviesList {
+  umbrella header "Pods-MyMoviesList-umbrella.h"
+
+  export *
+  module * { export * }
+}
